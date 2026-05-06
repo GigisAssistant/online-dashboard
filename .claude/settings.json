@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "Baserow MCP": {
+      "command": "/Users/gg/.nvm/versions/node/v24.14.1/bin/npx",
+      "args": [
+        "mcp-remote",
+        "https://database.aiworldwideworkforce.com/mcp/YSDVmV4jckSVYqDVxM2h3vQAz7mg4ejY/sse"
+      ]
+    }
+  }
+}

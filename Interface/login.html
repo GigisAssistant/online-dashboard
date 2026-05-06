@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Portal — AI Worldwide Workforce</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23C9A84C'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter,sans-serif' font-weight='900' font-size='14' fill='%230a0a0a'>AI</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F6F4F0;--gold:#D4AE40;--gold-dark:#A07820;--gold-glow:rgba(201,168,76,0.3);
+  --text:#0f0e0c;--muted:rgba(15,14,12,0.45);--border:rgba(160,120,48,0.18);
+}
+html,body{height:100%;overflow:hidden}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text)}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 40px;height:72px;display:flex;align-items:center;justify-content:space-between;background:rgba(246,244,240,0.90);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;flex-direction:column;line-height:1.1;text-decoration:none;gap:0}
+.nav-logo-top{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;letter-spacing:.02em;color:var(--text)}
+.nav-logo-sub{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;letter-spacing:.02em;color:var(--gold-dark)}
+.nav-back{padding:8px 18px;background:transparent;color:var(--muted);border:1px solid var(--border);border-radius:8px;font-size:12px;font-weight:600;font-family:'Inter',sans-serif;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;transition:color .2s,border-color .2s}
+.nav-back:hover{color:var(--gold);border-color:var(--gold)}
+
+#hero{position:relative;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center}
+#hero-canvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0}
+
+.login-card{position:relative;z-index:2;width:100%;max-width:420px;padding:48px 44px;background:rgba(255,255,255,0.72);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border:1px solid rgba(160,120,48,0.22);border-top:2px solid var(--gold);border-radius:20px;box-shadow:0 12px 56px rgba(0,0,0,0.08),0 2px 12px rgba(107,76,16,0.07)}
+.login-welcome{font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text);margin-bottom:6px}
+.login-title{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:600;line-height:1.15;letter-spacing:.01em;color:var(--text);margin-bottom:6px}
+.login-title span{color:#6B4C10}
+.login-divider{width:40px;height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin:20px 0 28px}
+
+.field{display:flex;flex-direction:column;gap:7px;margin-bottom:18px}
+.field label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.field input{padding:13px 16px;background:rgba(255,255,255,0.35);border:1px solid rgba(201,168,76,0.2);border-radius:10px;font-size:14px;font-family:'Inter',sans-serif;color:var(--text);outline:none;transition:border-color .2s,background .2s}
+.field input::placeholder{color:rgba(15,14,12,0.3)}
+.field input:focus{border-color:var(--gold);background:rgba(255,255,255,0.5)}
+
+.login-btn{width:100%;margin-top:8px;padding:14px;background:var(--gold-dark);color:#fff;border:none;border-radius:10px;font-size:12px;font-weight:700;font-family:'Inter',sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:opacity .2s,box-shadow .2s}
+.login-btn:hover{opacity:.85;box-shadow:0 4px 20px rgba(122,88,24,0.35)}
+
+.forgot{display:block;text-align:center;margin-top:18px;font-size:12px;color:var(--muted);text-decoration:none;transition:color .2s;font-family:'Inter',sans-serif}
+.forgot:hover{color:var(--gold)}
+.field-password{display:none} /* TODO: unhide when auth is live */
+
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="./index.html" class="nav-logo">
+    <span class="nav-logo-top">WorldWide</span>
+    <span class="nav-logo-sub">Workforce</span>
+  </a>
+  <a href="./index.html" class="nav-back">← Back</a>
+</nav>
+
+<div id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="login-card">
+    <p class="login-welcome">Welcome to your Customer Dashboard</p>
+    <h1 class="login-title">WorldWide<br><span>Workforce</span></h1>
+    <div class="login-divider"></div>
+    <div class="field">
+      <label>Email</label>
+      <input type="email" placeholder="your@email.com">
+    </div>
+    <div class="field field-password">
+      <label>Password</label>
+      <input type="password" placeholder="••••••••">
+    </div>
+    <button class="login-btn" onclick="window.location.href='customer/index.html'">Sign In</button>
+    <!-- TODO: unhide when auth is live -->
+    <!-- <a href="#" class="forgot">Forgot your password?</a> -->
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script>
+// ── THREE.JS PARTICLE NETWORK ──────────────────
+(function(){
+  const canvas = document.getElementById('hero-canvas');
+  let W=innerWidth, H=innerHeight;
+  const scene = new THREE.Scene();
+  const cam = new THREE.PerspectiveCamera(60,W/H,.1,1000);
+  cam.position.z = 16;
+  const renderer = new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
+  renderer.setSize(W,H);
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+
+  const N=110, SPREAD=24, DIST=4.5;
+  const pts=[], pa=new Float32Array(N*3);
+  for(let i=0;i<N;i++){
+    const p={x:(Math.random()-.5)*SPREAD,y:(Math.random()-.5)*SPREAD,z:(Math.random()-.5)*4,vx:(Math.random()-.5)*.0143,vy:(Math.random()-.5)*.0143};
+    pts.push(p);pa[i*3]=p.x;pa[i*3+1]=p.y;pa[i*3+2]=p.z;
+  }
+  const dGeo=new THREE.BufferGeometry();
+  dGeo.setAttribute('position',new THREE.BufferAttribute(pa,3));
+  scene.add(new THREE.Points(dGeo,new THREE.PointsMaterial({color:0xC9A020,size:.09,transparent:true,opacity:1.0})));
+  const lGeo=new THREE.BufferGeometry();
+  const lObj=new THREE.LineSegments(lGeo,new THREE.LineBasicMaterial({color:0xD4AE40,transparent:true,opacity:.6}));
+  scene.add(lObj);
+
+  let mox=0,moy=0;
+  document.addEventListener('mousemove',e=>{mox=(e.clientX/W-.5)*3;moy=-(e.clientY/H-.5)*3});
+
+  (function tick(){
+    requestAnimationFrame(tick);
+    const a=dGeo.attributes.position.array;
+    for(let i=0;i<N;i++){
+      const p=pts[i];p.x+=p.vx;p.y+=p.vy;
+      if(Math.abs(p.x)>SPREAD/2)p.vx*=-1;if(Math.abs(p.y)>SPREAD/2)p.vy*=-1;
+      a[i*3]=p.x;a[i*3+1]=p.y;
+    }
+    dGeo.attributes.position.needsUpdate=true;
+    const lp=[];
+    for(let i=0;i<N;i++)for(let j=i+1;j<N;j++){
+      const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y;
+      if(dx*dx+dy*dy<DIST*DIST)lp.push(pts[i].x,pts[i].y,pts[i].z,pts[j].x,pts[j].y,pts[j].z);
+    }
+    lGeo.setAttribute('position',new THREE.Float32BufferAttribute(lp,3));
+    cam.position.x+=(mox-cam.position.x)*.03;cam.position.y+=(moy-cam.position.y)*.03;cam.lookAt(0,0,0);
+    renderer.render(scene,cam);
+  })();
+
+  window.addEventListener('resize',()=>{W=innerWidth;H=innerHeight;cam.aspect=W/H;cam.updateProjectionMatrix();renderer.setSize(W,H)});
+})();
+
+</script>
+</body>
+</html>
